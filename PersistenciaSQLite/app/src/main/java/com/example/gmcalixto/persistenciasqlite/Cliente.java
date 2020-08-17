@@ -1,5 +1,7 @@
 package com.example.gmcalixto.persistenciasqlite;
 
+
+//classe de persistencia que representa um cliente
 public class Cliente {
 
     private Integer id_cliente;

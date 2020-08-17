@@ -24,12 +24,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //construir o banco
-        this.db = new DatabaseManager(this,"base",null,1);
+        this.db = new DatabaseManager(this,"database",null,1);
         startDatabase();
         populaTela();
     }
 
     public void startDatabase(){
+
+        //alimenta a base de dados com elementos fictícios
+
         this.db.inserirCliente(1,"MARIA","12312312311","01012000");
         this.db.inserirCliente(2,"MARIO","12312312312","01012001");
         this.db.inserirCliente(3,"JOSÉ","12312312313","01012002");
@@ -37,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void populaTela(){
         Cursor c = db.listaTodosClientes();
+
+
+        //recebe o curso e usa os dados do mesmo para popular
+        //a tela com os dados do cursor
 
         if(c.getCount() > 0){
             c.moveToFirst();
@@ -62,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //navega no ArrayList preenchido no popular tela
     public void showProximo(View view){
         EditText id = findViewById(R.id.id_cliente);
         EditText nome = findViewById(R.id.nome);
@@ -100,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         populaTela();
     }
 
+    //limpa todos os campos e adiciona o Id novo para inserção
     public void novo(View view){
         EditText id = findViewById(R.id.id_cliente);
         EditText nome = findViewById(R.id.nome);
@@ -112,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
         data_nasc.setText("");
     }
 
+
+    //insere um novo registro e repopula a tela
     public void inserir(View view){
         EditText id = findViewById(R.id.id_cliente);
         EditText nome = findViewById(R.id.nome);
